@@ -23,7 +23,7 @@
             <input type="submit" value="投稿">
         </form>
         <div class="back">
-            [<a href="/">戻る</a>]
+            <a href="/">戻る</a>
         </div>
     </body>
 </html>
