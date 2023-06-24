@@ -3,22 +3,24 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Posts</title>
+        <title>タイムラインの投稿</title>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     </head>
     <body>
-        <form action="/posts" method="POST">
+        <form action="/timelines" method="POST">
             @csrf
-            <div class="title">
-                <h2>タイムライン</h2>
-                <input type="text" name=post[title] placeholder="番組名"　value="{{ old('post.title') }}"/>
-                <p class="title_error" style="color:red">{{ $errors->first('post.title') }}</p>
-            </div>
             <div class="body">
                 <h2>投稿内容</h2>
-                <textarea name="post[body]" placeholder="番組の感想">{{ old('post.body') }}</textarea>
-                <p class="body_error" style="color:red">{{ $errors->first('post.body') }}</p>
+                <textarea name="timeline[body]" placeholder="番組の感想">{{ old('timeline.body') }}</textarea>
+            </div>
+            <div class="program">
+            <h2>番組名</h2>
+            <select name="timeline[program_id]">
+            @foreach($programs as $program)
+                <option value="{{ $program->id }}">{{ $program->name }}</option>
+            @endforeach
+            </select>
             </div>
             <input type="submit" value="投稿">
         </form>
