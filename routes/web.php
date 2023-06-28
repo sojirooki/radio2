@@ -33,6 +33,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/timelines', [TimelineController::class, 'store']);
     Route::get('/timelines/{timeline}/edit', [TimelineController::class, 'edit']);
     Route::put('/timelines/{timeline}', [TimelineController::class, 'update']);
+    Route::post('/timelines/like', [TimelineController::class, 'like'])->name('timelines.like');
 });
 
 require __DIR__.'/auth.php';
