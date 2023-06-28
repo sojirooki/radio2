@@ -47,4 +47,13 @@ class User extends Authenticatable
         return $this->hasMany(Timeline::class);  
     }
     
+    public function posts()
+    {
+        return $this->belongsTo(Timeline::class);
+    }
+    
+    public function likes()
+    {
+        return $this->hasMany(Timeline_like::class);
+ }
 }

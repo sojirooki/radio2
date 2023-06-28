@@ -29,4 +29,13 @@ class timeline extends Model
     {
         return $this->belongsTo(User::class);
     }
+    
+    public function likes()
+    {
+        return $this->hasMany('App\Models\Timeline_like');
+    }
+    
+    public function isLikedBy($user): bool {
+    return Timeline_like::where('user_id', $user->id)->where('timeline_id', $this->id)->first() !==null;
+    }
 }
