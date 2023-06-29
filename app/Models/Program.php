@@ -5,7 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model
+class Program extends Model
 {
     use HasFactory;
+    
+    public function Timelines()   
+    {
+        return $this->hasMany(Timeline::class);  
+    }
 }
