@@ -30,7 +30,7 @@ class timeline extends Model
         return $this->belongsTo(User::class);
     }
     
-    public function likes()
+    public function timeline_likes()
     {
         return $this->hasMany('App\Models\Timeline_like');
     }
