@@ -21,7 +21,7 @@
                 @else
                     <span class="timeline_likes">
                         <i class="fas fa-heart heart like-toggle liked" data-timeline-id="{{ $timeline->id }}"></i>
-                    <span class="like-counter">{{$timeline->likes_count}}</span>
+                    <span class="like-counter">{{$timeline->likes_count ?? "error"}}</span>
                     </span><!-- /.likes -->
                 @endif
                 @endauth

@@ -54,6 +54,6 @@ class User extends Authenticatable
     
     public function likes()
     {
-        return $this->hasMany(Timeline_like::class);
+        return $this->hasMany(Like::class);
  }
 }
