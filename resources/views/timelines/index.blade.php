@@ -1,7 +1,4 @@
 <x-app-layout>
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <body>
         <h1>りあたい！</h1>
         <a href='/timelines/create'>投稿する</a>

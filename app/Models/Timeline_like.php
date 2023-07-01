@@ -14,7 +14,7 @@ class Timeline_like extends Model
         'user_id'
     ];
 
-    public function post()
+    public function timeline()
     {
         return $this->belongsTo(Timeline::class);
     }

@@ -12,13 +12,9 @@ class TimelineController extends Controller
 {
     public function index(Timeline $timeline)
     {
-        return view('timelines.index')->with(['timelines' => $timeline->getPaginateByLimit()]);
-    
         $user = auth()->user();
-        $posts = Post::withCount('likes')->orderByDesc('updated_at')->get();
-        return view('timelines.index', [
-        'timelines' => $timelines,
-        ]);
+        //$timeline = Timeline::withCount('timeline_likes')->get();
+        return view('timelines.index')->with(['timelines' => $timeline->getPaginateByLimit()]);
     }
     
     public function show(Timeline $timeline)
@@ -55,16 +51,16 @@ class TimelineController extends Controller
     {
         $user_id = Auth::user()->id;
         $timeline_id = $request->timeline_id;
-        $already_liked = Like::where('user_id', $user_id)->where('timeline_id', $timeline_id)->first(); 
+        $already_liked = Timeline_like::where('user_id', $user_id)->where('timeline_id', $timeline_id)->first(); 
         if (!$already_liked) { 
-            $like = new Like;
+            $like = new Timeline_like;
             $like->timeline_id = $timeline_id;
             $like->user_id = $user_id;
             $like->save();
             } else {
-            Like::where('timeline_id', $timeline_id)->where('user_id', $user_id)->delete();
+            Timeline_like::where('timeline_id', $timeline_id)->where('user_id', $user_id)->delete();
             }
-        $timeline_likes_count = Post::withCount('likes')->findOrFail($timeline_id)->likes_count;
+        $timeline_likes_count = Timeline::withCount('timeline_likes')->findOrFail($timeline_id)->likes_count;
         $param = [
             'timeline_likes_count' => $timeline_likes_count,
         ];
