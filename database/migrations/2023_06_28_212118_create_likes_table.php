@@ -14,14 +14,13 @@ return new class extends Migration
      
     public function up()
     {
-        Schema::create('timeline_likes', function (Blueprint $table) {
+        Schema::create('likes', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('timeline_id');
-            $table->unsignedBigInteger('user_id');
+            //$table->unsignedBigInteger('timeline_id');
+            //$table->unsignedBigInteger('user_id');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('timeline_id')->constrained('timelines')->onDelete('cascade');
             $table->timestamps();
-            $table->unique(['timeline_id', 'user_id']);
-            $table->foreign('timeline_id')->references('id')->on('timelines')->onDelete('cascade');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

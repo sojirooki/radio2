@@ -19,6 +19,7 @@ $(function () {
         console.log('success');
         $this.toggleClass('liked');
         $this.next('.like-counter').html(data.timeline_likes_count);
+        console.log(data.timeline_likes_count);
       })
       .fail(function () {
         console.log('fail'); 

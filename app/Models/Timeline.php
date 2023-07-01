@@ -17,7 +17,7 @@ class timeline extends Model
 
     public function getPaginateByLimit(int $limit_count = 10)
     {
-        return $this::with('program')->orderBy('updated_at', 'DESC')->paginate($limit_count);
+        return $this::withCount('likes')->with('program')->orderBy('updated_at', 'DESC')->paginate($limit_count);
     }
 
     public function program()
@@ -30,12 +30,12 @@ class timeline extends Model
         return $this->belongsTo(User::class);
     }
     
-    public function timeline_likes()
+    public function likes()
     {
-        return $this->hasMany('App\Models\Timeline_like');
+        return $this->hasMany('App\Models\Like');
     }
     
     public function isLikedBy($user): bool {
-    return Timeline_like::where('user_id', $user->id)->where('timeline_id', $this->id)->first() !==null;
+    return Like::where('user_id', $user->id)->where('timeline_id', $this->id)->first() !==null;
     }
 }
